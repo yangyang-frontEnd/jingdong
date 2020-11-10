@@ -1,12 +1,15 @@
 import React from "react"
-import {BrowserRouter, Switch, Route} from "react-router-dom"
-import IndexComponent from "./pages/home";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
+import HomeComponent from "./pages/home/home";
+import config from "./assets/js/config/config";
 
 function RouterComponent() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path={"/"} component={IndexComponent}/>
+                <Route  path={config.path+"home"} component={HomeComponent}>
+                </Route>
+                <Redirect to={config.path+"home/index"}/>
             </Switch>
         </BrowserRouter>
     )
