@@ -365,6 +365,7 @@
   -webkit-justify-content: space-between;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 .reco-item-wrap .reco-item {
   width: 46%;

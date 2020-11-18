@@ -1,5 +1,16 @@
 import { useHistory, useLocation } from "react-router-dom";
 import config from "../../../assets/js/config/config";
+import { getSwiper, getNav, getGoodsLevel,getReco } from "../../../api/home";
+import {lazyImg} from "../utils/lazy-img"
+
+export {
+  useGoPage,
+  useHandleNavStyle,
+  useGetSwiper,
+  useGetNav,
+  useGetGoodsLevel,
+  useGetReco
+};
 
 function useGoPage() {
   let { replace } = useHistory();
@@ -7,8 +18,6 @@ function useGoPage() {
     replace(config.path + pUrl);
   };
 }
-
-export { useGoPage, useHandleNavStyle };
 
 function useHandleNavStyle() {
   let { pathname } = useLocation();
@@ -33,4 +42,54 @@ function useHandleNavStyle() {
         break;
     }
   };
+}
+
+function useGetSwiper() {
+  return function ({ setaSwiper, Css, Swiper }) {
+    getSwiper().then((res) => {
+      setaSwiper(res.data);
+      console.log("轮播图数据", res);
+      new Swiper(`.${Css["swiper-wrap"]}`, {
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 1000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false,
+        },
+      });
+    });
+  };
+}
+
+function useGetNav() {
+  return function (setaNav) {
+    getNav().then((res) => {
+      setaNav(res.data);
+      console.log("nav数据", res);
+    });
+  };
+}
+
+function useGetGoodsLevel() {
+  return function (setaGoods) {
+    getGoodsLevel().then((res) => {
+      console.log("首页产品数据", res);
+      setaGoods(res.data);
+    });
+  };
+}
+
+function useGetReco(){
+  return function (setaRecoGoods) {
+    getReco().then(res=>{
+      console.log('推荐数据',res);
+      setaRecoGoods(()=>{
+       return res.data 
+      })
+    })
+  }
 }

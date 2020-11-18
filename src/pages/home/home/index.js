@@ -6,6 +6,7 @@ import config from "../../../assets/js/config/config";
 import CartIndex from "../cart/index";
 import UserIndex from "../../user/index";
 import { useGoPage, useHandleNavStyle } from "../../../assets/js/hook/home";
+
 function HomeComponent(props) {
   let goPage = useGoPage();
   let handleNavStyle = useHandleNavStyle();
@@ -13,6 +14,7 @@ function HomeComponent(props) {
   let [bHomeStyle, setBHomeStyle] = useState(true);
   let [bCartStyle, setBCartStyle] = useState(false);
   let [bMyStyle, setBMyStyle] = useState(false);
+
 
   useEffect(() => {
     handleNavStyle(setBHomeStyle, setBCartStyle, setBMyStyle);
