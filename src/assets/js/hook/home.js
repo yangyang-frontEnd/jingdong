@@ -1,7 +1,13 @@
 import { useHistory, useLocation } from "react-router-dom";
 import config from "../../../assets/js/config/config";
-import { getSwiper, getNav, getGoodsLevel,getReco } from "../../../api/home";
-import {lazyImg} from "../utils/lazy-img"
+import {
+  getSwiper,
+  getNav,
+  getGoodsLevel,
+  getReco,
+  getClassifyData,
+} from "../../../api/home";
+import { lazyImg } from "../utils/lazy-img";
 
 export {
   useGoPage,
@@ -9,7 +15,8 @@ export {
   useGetSwiper,
   useGetNav,
   useGetGoodsLevel,
-  useGetReco
+  useGetReco,
+  useGetClassifyData,
 };
 
 function useGoPage() {
@@ -83,13 +90,22 @@ function useGetGoodsLevel() {
   };
 }
 
-function useGetReco(){
+function useGetReco() {
   return function (setaRecoGoods) {
-    getReco().then(res=>{
-      console.log('推荐数据',res);
-      setaRecoGoods(()=>{
-       return res.data 
-      })
-    })
-  }
+    getReco().then((res) => {
+      console.log("推荐数据", res);
+      setaRecoGoods(() => {
+        return res.data;
+      });
+    });
+  };
+}
+
+function useGetClassifyData() {
+  return function (setaClassify) {
+    getClassifyData().then((res) => {
+      console.log("产品分类左侧", res);
+      setaClassify(res.data);
+    });
+  };
 }

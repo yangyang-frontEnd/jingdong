@@ -32,4 +32,12 @@ function getReco(data = {}) {
   });
 }
 
-export { getSwiper, getNav, getGoodsLevel,getReco };
+function getClassifyData(data = {}) {
+  let params = Object.assign({}, { token: "1ec949a15fb709370f" }, data);
+  return request({
+    url: "/api/home/category/menu",
+    data: params,
+  });
+}
+
+export { getSwiper, getNav, getGoodsLevel, getReco,getClassifyData };

@@ -50,6 +50,7 @@
 }
 
 .bottom-nav ul li.text {
+    width: auto;
     font-size: 0.6rem;
     text-align: center;
 }

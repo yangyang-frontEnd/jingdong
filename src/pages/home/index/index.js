@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Css from "../../../assets/css/home/index/index.module.css";
+import config from "../../../assets/js/config/config";
 
 import Swiper from "swiper";
 import {
@@ -13,7 +14,7 @@ import { lazyImg } from "../../../assets/js/utils/lazy-img";
 
 import Loading from "../../../component/loading";
 
-function IndexComponent() {
+function IndexComponent(props) {
   let [aSwiper, setaSwiper] = useState(null);
   let [aNav, setaNav] = useState(null);
   let [aGoods, setaGoods] = useState(null);
@@ -35,6 +36,13 @@ function IndexComponent() {
       setbScroll(false);
     }
   };
+
+  let pushPage = (pUrl) => {
+    console.log(props);
+    let { push } = props.history;
+    push(config.path + pUrl);
+  };
+
   useEffect(() => {
     _getSwiper({ setaSwiper, Css, Swiper });
     _getNav(setaNav);
@@ -55,7 +63,12 @@ function IndexComponent() {
         <div
           className={`${Css["search-header"]} ${bScroll ? Css["red-bg"] : ""}`}
         >
-          <div className={Css["classify-icon"]}></div>
+          <div
+            className={Css["classify-icon"]}
+            onClick={() => {
+              pushPage("goods/classify/items");
+            }}
+          ></div>
           <div className={Css["search-wrap"]}>
             <div className={Css["search-icon"]}></div>
             <div className={Css["search-text"]}>请输入宝贝名称</div>
